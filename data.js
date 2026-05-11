@@ -1,3 +1,8 @@
+// at the top of `data.js`
+const BASE_JSON_BIN_URL = "https://api.jsonbin.io/v3/b";
+const BIN_ID = "652e334254105e766fc35326";
+const MASTER_KEY = "$2a$10$5qTjb288y2dU1ESj0eE5tuhs0b04btQXFg8TyZt/ogyBZHv0Dq1IO";
+
 let todos = [];
 
 function addTodo(todos, name, urgency) {
@@ -43,4 +48,19 @@ function deleteTask(todos, id) {
   } else {
     console.log("Task is not found");
   }
+}
+
+  async function saveTasks(todos) {
+  const response = await axios.put(`${BASE_JSON_BIN_URL}/${BIN_ID}`, todos, {
+    headers: {
+      "Content-Type": "application/json",
+      "X-Master-Key": MASTER_KEY
+    }
+  });
+  return response.data;
+
+}
+  async function loadTasks() {
+  const response = await axios.get(BASE_JSON_BIN_URL + "/" + BIN_ID + "/latest");
+  return response.data.record;
 }

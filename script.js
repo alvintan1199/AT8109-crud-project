@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  function main() {  
-        let todos = []; // store all the todos
-
+    const saveButton = document.querySelector("#save-btn");
+    saveButton.addEventListener("click", async function() {
+      saveTasks(todos);
+    })
+ 
+  async function main() {  
+    let todos = await loadTasks(); // store all the todos
+    
        // Step 2 - processing the form
 	 const addTodoButton = document.querySelector("#addTodo");
 	 addTodoButton.addEventListener('click', function() {
@@ -21,12 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // add three todos
-    addTodo(todos, "Walk the dog", 5);
-    addTodo(todos, "Clean the room", 3);
-    addTodo(todos, "Pay the bill", 2); 
+    
 
-    // step 2
-    renderTodos(todos);
+    
   }
 
   function renderTodos(todos) {
@@ -59,3 +61,5 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   main();
 });
+
+    
