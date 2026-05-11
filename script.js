@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
  
   async function main() {  
     let todos = await loadTasks(); // store all the todos
+    console.log(todos)
+
+    // renderTodos(todos)
     
        // Step 2 - processing the form
 	 const addTodoButton = document.querySelector("#addTodo");
